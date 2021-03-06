@@ -76,6 +76,10 @@
 - Nested interface
 - Default methods
 
+### Time Complexity
+
+### Space Complexity
+
 ### Exception handling
 - Handling fundamentals
 - Types 
