@@ -202,5 +202,65 @@ When does depth of x increase?
         return i;
     }   
 
+Proposition. 
+
+* Starting from an empty data structure, any sequence of M union-find ops on N objects makes ≤ c ( N + M lg* N ) array accesses.
+* Analysis can be improved to N + Mα(M, N).
+* Simple algorithm with fascinating mathematics.
+
+3. WEIGHTED QUICK-UNION WITH PATH COMPRESSION: amortized analysis
+Iterate log function
+
+| N | lg*N |
+|---|---|
+| 1 | 0 |
+| 2 | 1 |
+| 4 | 2 |
+| 16 | 3 |
+| 65536 | 4 |
+| 2^65536 | 5 |
+
+Linear-time algorithm for M union-find ops on N objects?
+* Cost within constant factor of reading in the data.
+* In theory, WQUPC is not quite linear.
+* In practice, WQUPC is linear.
+
+
+* Weighted quick union (with path compression) makes it possible to solve problems that could not otherwise be addressed.
+
+| Algorithm | worst-case time |
+|---|---|
+| quick-find | M N |
+| quick-union | M N |
+| weighted QU | N + M log N |
+| QU + path compression | N + M log N |
+| weighted QU + path compression | N + M lg* N |
+
+Ex.  [10^9 unions and finds with 10^9 objects]
+* WQUPC reduces time from 30 years to 6 seconds.
+* Supercomputer won't help much; good algorithm enables solution.
+
+4. APPLICATIONS
+
+When N is large, theory guarantees a sharp threshold p*.
+* p>p*: almost certainly percolates.
+* p<p*: almost certainly does not percolate.
+
+What is the value of p* ?
+* Initialize N-by-N whole grid to be blocked.
+* Declare random sites open until top connected to bottom.
+* Vacancy percentage estimates p*.
+
+How to check whether an N-by-N system percolates?
+* Create an object for each site and name them 0 to N 2 – 1. 
+* Sites are in same component if connected by open sites.
+* Percolates if any site on bottom row is connected to site on top row.
+
+
+
+
+
+
+
     
 
