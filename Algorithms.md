@@ -257,9 +257,66 @@ How to check whether an N-by-N system percolates?
 * Percolates if any site on bottom row is connected to site on top row.
 
 
+BAGS, QUEUES AND STACKS
 
+Fundamental Data types
+* Value : collection of objects.
+* Operations: insert, remove, iterate, test if empty.
+* Intent is clear when we insert.
+* Which item do we remove?
+    * Stack :
+        * LIFO - Last IN First Out. 
+        * Insert: push
+        * Remove: pop
+    * Queue : 
+        * FIFO - First In First Out.
+        * Insert: enqueue
+        * Remove: dequeue
+    
+STACKS
 
+Stack of strings data type
 
+```java
+ public class StackOfStrings
+StackOfStrings() // Constructor used to create an empty stack
+void push(String item) // Insert a new string onto stack
+String pop() // Remove recently added element
+boolean isEmpty() // Is the stack empty?
+int size() // Number of strings on the stack
+```
+Read strings from standard input
+* If string equals "-", pop string from stack and print.
+* Otherwise, push string onto stack.
+
+Linked list
+
+Stack pop
+* Save item to return
+
+        String item = first.item;
+* delete first node
+
+        first = first.next;
+
+Stack push
+* Save a link to the list
+
+        Node oldfirst = first;
+* Create a new node for the beginning
+
+        first = new Node();
+* set the instance variables in the new node
+
+        first.item = "xyz";
+        first.next = oldfirst;
+
+linked-list implementation in java
+```java
+public class LinkedStackOfStrings {
+    private Node first = null
+}
+```
 
 
     
