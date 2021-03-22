@@ -314,10 +314,155 @@ Stack push
 linked-list implementation in java
 ```java
 public class LinkedStackOfStrings {
-    private Node first = null
+    private Node first = null;
+    
+    private class Node {
+        String item;
+        Node next;
+    }
+    
+    public boolean isEmpty() {
+        return first == null;
+    }
+    
+    public void push(String item) {
+        Node oldfirst = first;
+        first = new Node();
+        first.item = item;
+        first.next = oldfirst;
+    }
+    
+    public String pop() {
+        String item = first.item;
+        first = first.next;
+        return item;
+    }
+}
+```
+Proposition
+* Every operation takes constant time in the worst case.
+* A stack with N items uses ~ 40 N bytes.
+
+Array implementation of a stack
+* Use array s[] to store N items on stack.
+* push():  add new item at s[N].
+* pop():  remove item from s[N-1].
+
+Defect
+* Stack overflows when N exceeds capacity.
+
+Array implementation
+```java
+public class FixedCapacityStackOfStrings {
+    private String[] s;   
+    private int N = 0;
+
+    public FixedCapacityStackOfStrings(int capacity) {
+        s = new String[capacity];  
+    }
+    public boolean isEmpty() {
+        return N == 0;
+    }
+    public void push(String item)  {  
+        s[N++] = item;  
+    }   
+    public String pop() {
+        return s[--N];
+    }
+}
+```
+Underflow
+*  throw exception if pop from an empty stack.
+
+Overflow
+* use resizing array for array implementation. 
+
+Null items.
+* Allows null items to be inserted. 
+
+Loitering. 
+* Holding a reference to an object when it is no longer needed.
+
+Loitering
+```java
+public String pop() {  
+    return s[--N];  
 }
 ```
 
+Avoids loitering
+```java
+public String pop() {  
+    String item = s[--N];
+    s[N] = null;
+    return item;
+}
+```
 
+RESIZING ARRAYS
+
+Requiring client to provide capacity does not implement API!  
+
+To grow and shrink an array:
+* First try
+    * push(): increase size of array s[] by 1. 
+    * pop(): decrease size of array s[] by 1. 
+
+Grow an array:
+* If array is full, create a new array of twice the size, and copy items.
+```java
+public ResizingArrayStackOfStrings() {  
+    s = new String[1];  
+}
+public void push(String item){
+    if(N == s.length){
+    resize(2 * s.length);
+    s[N++]=item;
+    }
+}
+private void resize(int capacity) {
+    String[] copy = new String[capacity];
+    for (int i = 0; i < N; i++) {
+        copy[i] = s[i];
+    }
+    s = copy;
+}
+```
+
+Shrink an array
+* First try
+    * push(): double size of array s[] when array is full.
+    * pop(): halve size of array s[] when array is one-half full.
+
+* Effective solution
+    * push(): double size of array s[] when array is full. 
+    * pop(): halve size of array s[] when array is one-quarter full.
+```java
+ public String pop() {
+    String item = s[--N];
+    s[N] = null;
+    if (N > 0 && N == s.length/4) {
+        resize(s.length/2);
+    }
+    return item;
+}
+```   
+Proposition
+
+Uses between ~ 8 N and ~ 32 N  bytes to represent a stackwith N items.
+* ~ 8 N  when full.
+* ~ 32 N when one-quarter full.
+
+Linked-list implementation vs resizing-array implementation
+
+Linked-list implementation
+* Every operation takes constant time in the worst case.
+* Uses extra time and space to deal with the links. 
     
+Resizing-array implementation
+* Every operation takes constant amortized time.
+* Less wasted space.
+
+QUEUE
+
 
