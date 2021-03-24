@@ -465,4 +465,144 @@ Resizing-array implementation
 
 QUEUE
 
+API
+```java
+public class QueueOfStrings
+QueueOfStrings() // create an empty queue
+void enqueue(String item) // insert a new string onto queue
+String dequeue() // remove and return the string least recently added
+boolean isEmpty() // is the queue empty?
+int size() // number of strings on the queue
+```
+
+Linked-ist implementation
+
+Queue dequeue
+* save item to return
+
+        String item = first.item;
+* delete first node
+
+        first = first.next; 
+* return saved item
+
+        return item;
+
+Queue enqueue
+* save a link to the last note
+
+        Node oldlast = last;
+* create a new node for the end
+
+        last = new Node();
+        last.item = "input";
+* link the new node to the old node
+    
+        oldlast.next = last;
+
+Special cases for empty queue
+* enqueue
+
+        if(isEmpty()) {
+            first = last;
+        } else {
+            oldlast.next = last;
+        }
+* dequeue
+
+        if(isEmpty()) {
+            last = null;
+        }
+        return item;
+
+Array Implementation
+* Use array q[] to store items in queue.
+* enqueue(): add new item at q[tail].
+* dequeue(): remove item at q[head].
+
+GENERICS
+
+Parameterized stack
+
+We implemented:  StackOfStrings. <br>
+We also want:  StackOfURLs, StackOfInts, StackOfVans, ...
+
+
+Attempt 1.  
+* Implement a separate stack class for each type.
+    * Rewriting code is tedious and error-prone.
+    * Maintaining cut-and-pasted code is tedious and error-prone.
+
+Attempt 2.
+*  Implement a stack with items of type Object.
+    * Casting is required in client.
+    * Casting is error-prone:  run-time error if types mismatch.
+
+Attempt 3.  
+* Java generics.
+    * Avoid casting in client.
+    * Discover type mismatch errors at compile-time instead of run-time.
+    
+Generic data types
+
+Wrapper type.
+* Each primitive type has a wrapper object type.
+* Ex:  Integer is wrapper type for int.
+
+Autoboxing <br>
+Automatic cast between a primitive type and its wrapper.
+
+ITERATION
+
+Iterable <br>
+Has a method that returns an Iterator.
+
+Iterable interface
+```java
+public interface Iterable<item> {
+    Iterator<item> iterator();
+}
+```
+
+Iterator <br>
+Has methods hasNext() and next();
+
+Iterator interface
+```java
+public interface Iterator<item> {
+    boolean hasNext();
+    Item next();
+}
+```
+Iterate <br>
+shorthand
+```java
+    for(String s : stack) {
+        System.out.println(s);
+    }
+```
+longhand
+```java
+    Iterator<String> i = stack.iterator();
+    while (i.hasNext()) {
+        String s = i.next();
+        System.out.println(s);
+    }
+```
+
+Bag API
+
+Main application. <br>
+Adding items to a collection and iterating(when order doesn't matter).
+```java
+public class Bag<Item> implements Iterable<Item>
+Bag() // create an empty bag
+void add(Item x) // insert a new item onto bag
+int size() // number of items in bag
+        Iterable<Item> iterator() // iterator for all items in bag
+```
+
+
+
+
 
