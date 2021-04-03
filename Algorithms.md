@@ -602,6 +602,27 @@ int size() // number of items in bag
         Iterable<Item> iterator() // iterator for all items in bag
 ```
 
+SORTING
+
+Sort any type of data using:
+        
+        Insertion.sort(xyz);
+
+How sort works:
+* Client passes array of objects to sort() method.
+* The sort() function calls back object's compareTo() method as needed.
+
+Test if an array is sorted
+```java
+private static boolean isSorted(Comparable[] a) {
+    for (int i = 1; i < a.length; i++) {
+        if (less(a[i], a[i-1])) {
+            return false;
+        }
+    }
+    return true;
+}
+```
 
 
 
